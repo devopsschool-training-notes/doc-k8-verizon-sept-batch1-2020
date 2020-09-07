@@ -318,14 +318,97 @@ create -> start -> stop -> start -> restart -> pause -> unpause -> kill -> rm
    98  docker exec 28b652147220 ls /var/jenkins_home
    99  docker exec edf212bd839f ls /var/jenkins_home
 
+==============================================================
+Concept of PID 1
+==============================================================
+PM is running		VM is running		Cont is running 
+As long as 		As long as 		As long as 
+PID 1 is running	PID 1 is running	PID 1 is running
+
+PID 1 is systemd	PID 1 is systemd	PID 1 is ANYTHING
+
+ubuntu
+===================
+  119  docker ps -a
+  120  docker run ubuntu
+  121  docker ps
+  122  clear
+  123  docker ps -a
+  124  docker run ubuntu ls
+  125  docker ps -a
+  126  clear
+
+pull + create + start + BECOME(Attached ot PID1) 
+===========================================
+		RUN
+docker run jenkins
+
+pull + create + start + DO NOT BECOME(Attached ot PID1) AKA Deattached
+===========================================
+		RUN -d
+docker run -d jenkins
 
 
+============================================================================
+How to use those containers?
+============================
+1. How to go inside a container?
+
+exec
+	This would execute an executables inside a container
+	BUT with -it and /bin/bash - you can go inside
+
+ 124  docker run ubuntu ls
+  125  docker ps -a
+  126  clear
+  127  history
+  128  clear
+  129  docker ps
+  130  docker exec e6e2c3a119b4 ls
+  131  docker exec e6e2c3a119b4 ps
+  132  docker exec e6e2c3a119b4 df -kh
+  133  histoclear
+  134  clear
+  135  docker ps
+  136  docker exec -it e6e2c3a119b4 /bin/bash
+  137  clear
+  138  dockerr ps
+  139  docker ps
+
+attach
+	it would attached to PID1
+	if PID1 is /bin/bash - u are human. you can work with it.
+
+How can u come out of container without exiting?
+$ control + p + q [ WORK only with when PID 1 is /bin/bash ]
+
+2. How to access app from outside?
+=------------------------------------
+$ docker run -d -p 8080:8080 jenkins
+$ docker run -p ext:int jenkins
+docker run -d -p 8090:8080 jenkins
 
 
+[centos@ip-172-31-14-167 ~]$ docker run -it jenkins - PID 1 and 
+		
+[centos@ip-172-31-14-167 ~]$ docker run -it ubuntu
+=============================================
+[centos@ip-172-31-14-167 ~]$ docker run -it jenkins	PID 1 /bin/tini	
+[centos@ip-172-31-14-167 ~]$ docker run -it ubuntu	PID 1 /bin/bash [ RIGHT ]
+
+[centos@ip-172-31-14-167 ~]$ docker run jenkins	PID 1 /bin/tini	
+[centos@ip-172-31-14-167 ~]$ docker run ubuntu	PID 1 /bin/bash [ RIGHT ]
 
 
+pull + create + start + BECOME(Attached ot PID1) 
+===========================================
+		RUN
+docker run jenkins
 
-
+pull + create + start + DO NOT BECOME(Attached ot PID1) AKA Deattached
+===========================================
+		RUN -d
+docker run -d jenkins
 
 
 
