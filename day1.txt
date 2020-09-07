@@ -1,0 +1,336 @@
+1 2 3 4 5 6 7 8 9 
+1 2 3 4 5 6 7 8 9 0
+
+=====================
+Start - 9:30 AM
+End - 6:30 PM
+
+Lunch - 1 - 2 PM
+Break - 11:30 && 3.30 For 15mins
+===================
+Pre Test?
+================
+https://www.devopsschool.com/lms/
+Docker - 
+	Docker Essential Quiz - 1
+Kubernetes - 
+	Kubernetes Essential Quiz - 1
+
+
+	Marks	0.00/25.00
+	Grade	0.00 out of 10.00 (0%)
+===============================================
+
+Day - Day2 - Docker
+Day 3 - Day 5 - K8s.
+=======================================
+What is Docker?
+=======================
+	Container Mgmt tool / platform.
+	Written in Golang
+	by Soloman hykes
+	Release
+		CE - Community Editon - Free and OS
+		Enterprise - Paid + Not is (Part of Swarm)	
+	Latest version
+		19.X
+	
+
+	tool 
+		Save cost
+		Save time
+		Imp* Efficiency*
+
+	Platform
+		Comes and go....
+		You can use that OBJECT only on that platform.
+
+	What is Container?
+	==========================
+	is a userspace with their own	user 	> USR NS
+					net	-> NET NS
+					pmap	-> PID NS
+					mnt	-> MNT NS
+				Shared CGROUPS and Capa*
+	Manged by Docker Engine.
+
+	Container is lightweight APP run indepent ISOLATED runtime env.
+
+
+
+
+How can we run APP?
+========================
+In physical MACHINE?????
+	What are the components needed to run app?
+
+OS -> KERNAL - Namespace
+		USER ----> Create a USER ISO --> unlimited
+		NET ---> Create a network layer to computer -> 1
+		MNT ---> 1 BOOT FILESYSYSTEM --> 1 ROOT FILESYSTEM --> unlimited USER FILESYSTEM
+		PID --> 1 PID
+
+		CGROUPS --> Allocating Compute to PID
+		Capabilties -->Controling a USER is normal or root user
+=====================================
+MNT == MOUNT
+
+FILESYSYSTEM?
+===============================
+BOOT FILESYSYSTEM --> ROOT FILESYSTEM --> USER FILESYSTEM -- APP FILESYSTEM
+
+KERNAL		 ---> Linux Flavor
+========================How can we reduce running app cost???=================
+Evolution of Running APP Platform?
+===================================================
+Physical Server => Virutalization => 		Container based
+20 YRS		=> 20 yrs
+================================================================
+1 Day			5 mins			1 Sec
+						X 10000 of APP
+						Rollout - 1 Sec
+						Roll Back - 1 sec
+	
+1 PS			1 PS			1 PS
+-----			-----------
+1 APP			4 APP			10 APP	
+
+=================================================================
+OS for PC ---> Personal Computing -- HUMAN
+
+=======================================================
+Architecuture of Docker?
+==============================
+
+Human --> Docker Client ----REST ---> Docker Deamon --> ContainerD --> Kernal 
+          ---------------------------------------------
+				Docker Engine		
+
+ContainerD 
+	Common Interface for talking to kernal for Containers.			
+
+
+Other Container Interface
+https://www.devopsschool.com/blog/list-of-top-container-runtime-interface-projects/
+
+Components of Docker
+==============================================
+Docker Engine
+		Docker Client ----REST ---> Docker Deamon --> ContainerD
+Docker Image
+		is a filesystem(s)
+		ROOT FILESYSTEM --> USER FILESYSTEM -- APP FILESYSTEM
+		From Registry
+		Whatever u have in an image - u can see inside a container.
+	OS Image	
+		BOOT FILESYSYSTEM --> ROOT FILESYSTEM --> USER FILESYSTEM -- APP FILESYSTEM
+		FROm - https://www.vagrantbox.es/	
+	
+Docker Registry
+		has repostiory(s)
+		Each repo has DOCKER IMAGE.
+		PUBLIC
+			hub.docker.com
+			google resgirty
+
+		PVT	
+			artifactory
+			nexus
+			ECR
+
+Docker Container
+		A moment u run image
+			- you get one container.
+	is a userspace with their own	user 	> USR NS
+					net	-> NET NS
+					pmap	-> PID NS
+					mnt	-> MNT NS
+				Shared CGROUPS and Capa*
+	Manged by Docker Engine.
+
+	Container is lightweight APP run indepent ISOLATED runtime env.
+
+How to install Docker
+===================================
+https://www.devopsschool.com/tutorial/docker/install-config/docker-install-commuityedition-centos-rhel.html
+
+sudo -s
+   1  sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+    2  sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    3  sudo yum install –y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    4  sudo yum-config-manager --enable rhui-REGION-rhel-server-extras
+    5  sudo yum install -y docker-ce
+    6  docker -v
+    7  sudo systemctl enable docker
+    8  sudo systemctl start docker
+    9  clear
+   10  docker info
+   11  history
+====================================
+
+Docker Workflow
+=============================
+Human -> Docker Client --> DockerD
+				Check IF image exist in LR ---> containerD
+				Check IF image DO exist in LR '
+					Donwload Image from RR(dockerhub) to LR(localregistry)
+					and ---> containerD
+
+Container LifeCYcle
+=============================
+create -> start -> stop -> start -> restart -> pause -> unpause -> kill -> rm
+
+
+Vms LifeCYcle
+=============================
+create -> start -> stop -> start -> restart -> pause -> unpause -> kill -> rm
+
+
+Which Image
+=====================
+jenkins
+=============
+	java based
+
+BFS 	-> RFS -> UFS -> JFS -> JENKINSFS
+HOST OS -================================
+			IMAGE
+          debian + jenkins + java + jenkins
+	============================================
+		IMAGE
+	Web bases
+		8080
+		50000
+
+
+Container LifeCYcle
+=============================
+create -> start -> stop -> start -> restart -> pause -> unpause -> kill -> rm
+
+   4  docker images
+    5  docker pull jenkins
+    6  docker nfo
+    7  docker info
+    8  clear
+    9  ls
+   10  docker images
+   11  clear
+   12  ls
+   13  clear
+   14  docker ps
+   15  docker ps -a
+   16  docker create jenkins
+   17  docker ps -a
+   18  docker start fb73bece2f90
+   19  docker ps -a
+   20  clear
+   21  ls
+   22  docker ps
+   23  docker stop fb73bece2f90
+   24  docker ps
+   25  docker ps -a
+   26  docker start fb73bece2f90
+   27  docker ps -a
+   28  clear
+   29  docker ps
+   30  docker restart fb73bece2f90
+   31  docker ps
+   32  docker pause fb73bece2f90
+   33  docker ps
+   34  docker stats
+   35  docker un'pause fb73bece2f90
+   36  docker unpause fb73bece2f90
+   37  docker stats
+   38  docker kill fb73bece2f90
+   39  docker ps -a
+   40  docker rm fb73bece2f90
+   41  docker ps -a
+   42  clear
+   43  history
+
+
+
+	What is Container?
+	==========================
+	is a userspace with their own	user 	> USR NS
+					net	-> NET NS
+					pmap	-> PID NS
+					mnt	-> MNT NS
+				Shared CGROUPS and Capa*
+	Manged by Docker Engine.
+
+	Container is lightweight APP run indepent ISOLATED runtime env.
+
+
+ 45  ps
+   46  ps -eaf | grep 9259
+   47  ps -eaf | grep 9234
+   48  ps -eaf | grep 9233
+   49  ps -eaf | grep 9230
+   50  clear
+   51  ps -eaf | grep 1240]
+   52  ps -eaf | grep 1240
+   53  ps -eaf
+   54  clear
+   55  ls
+   56  docker create jenkins
+   57  docker start edf212bd839fcb7fe47d96adaa8c3c2f6c09a25225fa0a92c9c660a42f379b72
+   58  docker ps
+   59  clear
+   60  ls
+   61  ps -eaf
+   62  clear
+   63  ls
+   64  docker ps
+   65  ps -eaf | grep edf212bd839f
+   66  ps -eaf | grep 10225
+   67  clear
+   68  ps -eaf | grep 9000
+   69  cl;ear
+   70  clear
+   71  docker ps -a
+   72  docker inspect edf212bd839f
+   73  docker create jenkins
+   74  docker start 28b6521472205b3f1a6bbef24d7edf6c70d22e73eb84a856e1f648969cf83f56
+   75  docker ps
+   76  docker inspect 28b652147220
+   77  clear
+   78  ps -eaf
+   79  clear
+   80  ls
+   81  docker ps
+   82  ps -eaf
+   83  clear
+   84  docker ps
+   85  docker exec 28b652147220 ps -eaf
+   86  docker exec edf212bd839f ps -eaf
+   87  clear
+   88  ls
+   89  docker ps
+   90  docker exec 28b652147220 df -kh
+   91  docker exec edf212bd839f df -kh
+   92  clear
+   93  ls
+   94  docker ps
+   95  docker exec 28b652147220 ls '/var/jenkins_home
+   96  docker exec 28b652147220 ls /var/jenkins_home
+   97  docker exec 28b652147220 touch /var/jenkins_home/rajesh1.txt
+   98  docker exec 28b652147220 ls /var/jenkins_home
+   99  docker exec edf212bd839f ls /var/jenkins_home
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
