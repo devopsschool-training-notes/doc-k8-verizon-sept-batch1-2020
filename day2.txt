@@ -293,10 +293,195 @@ https://www.devopsschool.com/blog/understand-docker-volume-from-beginner-to-deep
   403  docker rm 03d67c96ad43
   404  ls
 
+===============================================================
+Docker Images
 
+ 413  docker ps -a
+  414  docker images
+  415  docker rmi ubuntu
+  416  docker rmi jenkins
+  417  clear
+  418  ls
+  419  docker images
+  420  docker info
+  421  clear
+  422  cd /var/lib/docker/
+  423  ls
+  424  cd overlay2
+  425  clear
+  426  ls
+  427  du -sh .
+  428  docker pull ubuntu
+  429  ls
+  430  clear
+  431  ls
+  432  du -h --max-depth=1
+  433  cd ./22d5090306d9570cbe77a4dbd2d330533f338462d5d1a23b1c7eb44e971f3939
+  434  clear
+  435  ls
+  436  cd diff/
+  437  ls
+  438  clear
+  439  ls
+  440  pwd
+  441  pwd
+  442  cd ..
+  443  ls
+  444  cd ..
+  445  ls
+  446  clear
+  447  ls
+  448  cd 9088c93ac90d628aaf098b0fb51543fd14de46fbb41b53686493cb69b4e14a80
+  449  ls
+  450  clear
+  451  ls
+  452  cd diff
+  453  clear
+  454  ls
+  455  tree
+  456  cd etc
+  457  ls
+  458  clear
+  459  ls
+  460  cd ..
+  461  s
+  462  clear
+  463  ls
+  464  cd ..
+  465  ls
+  466  cd ..
+  467  ls
+  468  docker images
+  469  docker inspect ubuntu
+  470  ls
+  471  clear
+  472  ls
+  473  clear
+  474  ls
+  475  docker inspect ubuntu
+  476  ls
+  477  cd ..
+  478  ls
+  479  cd image/
+  480  ls
+  481  cd overlay2/
+  482  ls
+  483  cd layerdb/
+  484  ls
+  485  clear
+  486  clear
+  487  ls
+  488  cd ..
+  489  ls
+  490  clear
+  491  ls
+  492  cd ..
+  493  ls
+  494  cd ..
+  495  ls
+  496  cd overlay2/
+  497  clear
+  498  ls
+  499  clear
+  500  ls
+  501  docker inspect ubuntu
+  502  clear
+  503  ls
+  504  pwd
+  505  docker history ubuntu
+  506  docker images
+  507  clear
+  508  ls
+  509  df -kh
+  510  ls
+  511  docker run -itd ubuntu
+  512  'ls
+  513  clear
+  514  ls
+  515  du -sh 8acd86a9f68d953273b42b8a22e89dbd5c63136cb2ded3b22692b151a848e8c9
+  516  du -sh 8acd86a9f68d953273b42b8a22e89dbd5c63136cb2ded3b22692b151a848e8c9-init
+  517  df -kh
+  518  ps -eaf | grep docker
+  519  clear
+  520  ls
+  521  df -kh
+  522  cd /var/lib/docker/overlay2/8acd86a9f68d953273b42b8a22e89dbd5c63136cb2ded3b22692b151a848e8c9/merged
+  523  ls
+  524  cd ..
+  525  ls
+  526  clear
+  527  ls
+  528  docker ps
+  529  docker exec 478f9526e17a touch /opt/rajesh.txt
+  530  find . -name rajesh.txt
+  531  docker 478f9526e17a
+  532  docker stop 478f9526e17a
+  533  df -kh
+  534  ls
+  535  docker start 478f9526e17a
+  536  find . -name rajesh.txt
+  537  clear
+  538  ls
+  539  history
+========================================================================
+How to create an Image?
+==================================
+Manual Way - Using Existing COntainer
+----------------------------------------------
+Create an image
+		Base - ubuntu
+		APP - git Apach2
 
+ 538  ls
+  539  history
+  540  clear
+  541  ls
+  542  cd
+  543  lsa
+  544  docker ps -a
+  545  docker stop 478f9526e17a
+  546  clear
+  547  docker rm 478f9526e17a
+  548  clear
+  549  docker ps -a
+  550  docker run -itd ubuntu
+  551  docker ps
+  552  docker attach 5f9dfcedb1b7
+  553  clear
+  554  ls
+  555  docker ps =a
+  556  clear
+  557  docker ps
+  558  docker exec 5f9dfcedb1b7 git
+  559  clear
+  560  clear
+  561  git
+  562  docker exec 5f9dfcedb1b7 git
+  563  clear
+  564  docker ps
+  565  docker diff 5f9dfcedb1b7
+  566  clear
+  567  ls
+  568  docker ps
+  569  docker inspect 5f9dfcedb1b7
+  570  clear
+  571  ls
+  572  docker images
+  573  docker history ubuntu
+  574  docker ps
+  575  docker commit -m"up-up-git-apache2" -a"Rajesh Kumar" 5f9dfcedb1b7 up-up-git-apache2
+  576  docker images
+  577  clear
+  578  docker images
+  579  docker history up-up-git-apache2
+  580  docker run -itd up-up-git-apache2
+  581  docker ps
+  582  docker exec 8eade624aa95 git
+  583  clear
+  584  history
+		
 
-
+Automated Way - Using Dockerfile
 
 
 
