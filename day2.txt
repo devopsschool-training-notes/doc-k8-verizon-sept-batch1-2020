@@ -94,6 +94,217 @@ wait	Block until one or more containers stop, then print their exit codes
   295  clear
   296  docker events
   297  history
+========================================================================
+Docker Volume
+=================================
+https://www.devopsschool.com/blog/understand-docker-volume-from-beginner-to-deep-dive-level/
+	volume	/var/lib/docker/volumes
+	mount	ANY PLACE in HOST Machine
+	tmfs	Memory
+
+214  docker run -itd ubuntu
+  215  clear
+  216  ;ls
+  217  clear
+  218  ls
+  219  clear
+  220  docker ps
+  221  docker exec 53cc111d6caa ls /opt
+  222  docker exec ubuntu ls /opt/
+  223  docker exec cd8ab0deeae ls /opt/
+  224  docker exec 65ddc949f592 ls /opt/
+  225  clear
+  226  docker exec 65ddc949f592 ls /opt/
+  227  df -kh
+  228  docker ps
+  229  clear
+  230  cd /var/lib/docker/overlay2
+  231  ls
+  232  clear
+  233  ls
+  234  clear
+  235  docker exec 65ddc949f592 ls /opt/
+  236  find . -name devopsschool.txt
+  237  docker stop 65ddc949f592
+  238  find . -name devopsschool.txt
+  239  docker start 65ddc949f592
+  240  find . -name devopsschool.txt
+  241  docker stop 65ddc949f592
+  242  find . -name devopsschool.txt
+  243  docker rm 65ddc949f592
+  244  find . -name devopsschool.txt
+  245  cd ..
+  246  clear
+  247  ls
+  248  cd volumes/
+  249  pwd
+  250  clear
+  251  ls
+  252  cd a35a7920409a703439fd6c43a662047ec33652c0f4a7a8814e5bf3eee3c9eac1
+  253  ls
+  254  clear
+  255  ls
+  256  cd _data/
+  257  ls
+  258  cd ..
+  259  ls
+  260  cd ..
+  261  lc
+  262  clear
+  263  docker volumen ls
+  264  docker volume ls
+  265  docker volume
+  266  clear
+  267  docker volume create dev
+  268  docker volume ls
+  269  ls
+  270  clear
+  271  ls
+  272  cd devls
+  273  clear
+  274  cd dev/
+  275  ls
+  276  cd _data/
+  277  ls
+  278  ls
+  279  cd ..
+  280  ls
+  281  cd ..
+  282  lc
+  283  clear
+  284  docker volume create qa
+  285  docker volume ls
+  286  docker volume prune
+  287  clear
+  288  ls
+  289  clear
+  290  docker ps
+  291  clear
+  292  ls
+  293  docker ps -a
+  294  clear
+  295  ls
+  296  docker volume create raju
+  297  docker volume create ram
+  298  docker volume ls
+  299  docker run -itd -v raju:/opt/raja ubuntu
+  300  docker ps
+  301  c;lear
+  302  cclear
+  303  clear
+  304  docker ps
+  305  docker exec bf0d33870ffd df -kh
+  306  docker exec bf0d33870ffd ls /opt/
+  307  ls
+  308  clear
+  309  ls
+  310  cd raju
+  311  ls
+  312  cd _data/
+  313  ls
+  314  touch devopsschool.txt
+  315  ls
+  316  docker exec bf0d33870ffd ls /opt/
+  317  docker exec bf0d33870ffd ls /opt/raja
+  318  docker exec bf0d33870ffd touch /opt/raja/dev1.txt
+  319  ls
+  320  docker run -itd -v raja:/opt/1 -v ram:/opt/2 ubuntu
+  321  docker ps
+  322  clear
+  323  docker exec 3e4354be72ac df -kh
+  324  docker exec 3e4354be72ac ls /opt/
+  325  clear
+  326  docker ps
+  327  docker stop 3e4354be72ac bf0d33870ffd 53cc111d6caa cd8ab0deeae8 71cb1dcdabd9 9904bf72b2e4
+  328  clear
+  329  docker rm 3e4354be72ac bf0d33870ffd 53cc111d6caa cd8ab0deeae8 71cb1dcdabd9 9904bf72b2e4
+  330  clear
+  331  cd ..
+  332  ls
+  333  cd ..
+  334  ls
+  335  docker volume ls
+  336  cd raja
+  337  ls
+  338  cd _data/
+  339  ls
+  340  cd ..
+  341  lc
+  342  clear
+  343  ls
+  344  cd ..
+  345  ls
+  346  cd raju/
+  347  ls
+  348  cd _data/
+  349  ls
+  350  history
+  351  clear
+  352  ls
+  353  docker volume
+  354  pwd
+  355  clear
+  356  docker ps
+  357  docker ps -as
+  358  docker ps -a
+  359  docker rm 722035aa1105 98db676428df 5c8ddaba1e09
+  360  clear
+  361  docker ps
+  362  docker ps -as
+  363  docker ps -a
+  364  df -kh
+  365  docker run -itd ubuntu
+  366  df -kh
+  367  clear
+  368  docker run -itd ubuntu
+  369  df -kh
+  370  docker docker ps
+  371  docker ps
+  372  docker exec 04e3dc2e8ceb touch /opt/dev1.txt
+  373  clear
+  374  ls
+  375  cd /var/lib/docker/overlay2
+  376  ls
+  377  clear
+  378  find . -name dev1.txt
+  379  docker stop 04e3dc2e8ceb
+  380  find . -name dev1.txt
+  381  docker rm  04e3dc2e8ceb
+  382  find . -name dev1.txt
+  383  history
+
+
+ 387  ls
+  388  clear
+  389  docker run -itd -v /opt/ramukaka:/opt/kaka ubuntu
+  390  docker ps
+  391  docker exex 03d67c96ad43 ls /opt/
+  392  docker exec 03d67c96ad43 ls /opt/
+  393  cd /opt/
+  394  ls
+  395  cd ramukaka
+  396  clear
+  397  ls
+  398  touch rrrfs fsd f sdf sdf sdfsdf
+  399  ls
+  400  docker exec 03d67c96ad43 ls /opt/
+  401  docker exec 03d67c96ad43 ls /opt/kaka
+  402  docker stop 03d67c96ad43
+  403  docker rm 03d67c96ad43
+  404  ls
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
