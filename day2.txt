@@ -1,0 +1,100 @@
+https://www.devopsschool.com/tutorial/docker/commands/index.html
+======================
+ 224  vi devopsschool.txt
+  225  more devopsschool.txt
+  226  ls
+  227  docker ps
+  228  docker cp devopsschool.txt 65ddc949f592:/opt
+  229  docker exec 65ddc949f592 ls /opt
+  230  docker exec 65ddc949f592 more /opt/devopsschool.txt
+  231  ls
+  232  rm -rf devopsschool.txt
+  233  clear
+  234  ls
+  235  docker cp 65ddc949f592:/opt/devopsschool.txt .
+  236  ls
+  237  more devopsschool.txt
+===============================
+
+DIFF
+-------------
+	ANY FILES/DIR
+		ADDED
+		MODIFIED
+		DELETED 
+	AFter a containers get created....You would see in DIFF.
+
+ 240  ls
+  241  docker ps
+  242  docker attach 65ddc949f592
+  243  docker ps
+  244  docker diff 65ddc949f592
+  245  history
+
+
+ 246  clear
+  247  docker images
+  248  docker ps
+  249  docker inspect ubuntu
+  250  docker ps
+  251  docker inspect 65ddc949f592
+  252  clear
+  253  ls
+  254  clear
+  255  docker ps
+  256  docker port 65ddc949f592
+  257  docker ps
+  258  docker ps -a
+  259  docker start  9904bf72b2e4
+  260  clear
+  261  docker ps
+  262  docker run -d jenkins
+  263  docker ps
+  264  docker port 9904bf72b2e4
+  265  docker port 71cb1dcdabd9
+  266  clear
+  267  docker ps
+  268  docker images
+  269  clear
+  270  docker
+  271  clear
+  272  docker ps
+  273  docker rename 71cb1dcdabd9 dev1
+  274  docker ps
+  275  docker run -itd --name dev2 ubuntu
+  276  docker help run
+  277  clear
+  278  ls
+  279  docker ps
+  280  history
+
+
+ASIGNMENT
+==============================
+update	Update configuration of one or more containers
+wait	Block until one or more containers stop, then print their exit codes
+
+
+ 279  docker ps
+  280  history
+  281  clear
+  282  docker ps
+  283  dcoker logs cd8ab0deeae8
+  284  docker logs cd8ab0deeae8
+  285  docker logs 71cb1dcdabd9
+  286  docker ps
+  287  clear
+  288  docker ps
+  289  docker stats
+  290  docker stats cd8ab0deeae8
+  291  docker ps
+  292  docker exec 9904bf72b2e4 ps -eaf
+  293  ps -eaf | grep tini
+  294  docker top 9904bf72b2e4
+  295  clear
+  296  docker events
+  297  history
+
+
+
+
