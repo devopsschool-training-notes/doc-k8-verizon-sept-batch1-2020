@@ -480,11 +480,53 @@ Create an image
   583  clear
   584  history
 		
-
+===============================================
 Automated Way - Using Dockerfile
+===============================================
+
+How to share an Images?
+===============================
+	Using Tar ball
+	========================
+588  docker images
+  589  docker save -o up-up-git-apache2.tar up-up-git-apache2
+  590  ls
+  591  docker ps -a
+  592  docker stop 8eade624aa95 5f9dfcedb1b7
+  593  docker rm 8eade624aa95 5f9dfcedb1b7
+  594  clear
+  595  ls
+  596  docker images
+  597  docker rmi up-up-git-apache2
+  598  docker images
+  599  docker load -i up-up-git-apache2.tar
+  600  docker images
+  601  clear
+  602  docker images
+  603  history
+
+	Using Hub.docker.com
+
+Step 1 - Register and verify your account with hub.docker.com
+Step 2 - Create a public repo
+Step 3 - Make sure "public repo" image name and Local repo image name must match
+Step 4 - docker login
+Step 5 - docker push imagename
 
 
 
+ 606  docker images
+  607  docker tag up-up-git-apache2 devopsschools/tuesday2020
+  608  docker images
+  609   docker login
+  610   docker login
+  611   docker login
+  612  lear
+  613  clear
+  614   docker login
+  615  docker images
+  616  docker push devopsschools/tuesday2020
+  617  history
 
 
 
