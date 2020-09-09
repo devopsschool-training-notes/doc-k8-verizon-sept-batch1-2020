@@ -1,0 +1,110 @@
+===============================================
+Automated Way - Using Dockerfile
+===============================================
+
+Jenkins
+	openjdk:8-jdk
+		buildpack-deps:buster-scm
+			buildpack-deps:buster-curl
+					debian:buster	rootfs
+						scratch
+===============================================
+About jenkins
+========================
+jenkins container is running with which ??
+		user
+		port
+		vol	DONE
+		env	DONE
+===================================
+Rules
+	Each line in Dockerfile - would create ONE layer.
+	Each layer would  be written on seprately and alone 
+
+FROM ubuntu
+MAINTAINER Rajeshkumar DevOps@Rajeshkumar.xyz
+RUN apt-get update
+RUN apt-get install git -y
+COPY devopsschool.txt /opt/
+ENV JAVA_RAJU /opt/xyz
+VOLUME /opt/xyz
+
+
+FROM ubuntu
+MAINTAINER Rajeshkumar DevOps@Rajeshkumar.xyz
+RUN touch /opt/rajesh1.txt
+RUN touch /opt/rajesh2.txt
+RUN touch /opt/rajesh3.txt
+
+
+  714  ls
+  715  docker build -t image1 .
+  716  vi dockerfile
+  717  docker build -t image1 .
+  718  touch devopsschool.txt
+  719  docker build -t image1 .
+  720  docker images
+  721  docker run -itd --name im1 image1
+  722  docker ps
+  723  docker exec b90ff462d484 git
+  724  docker exec b90ff462d484 ls /opt/
+  725  docker exec b90ff462d484 df -kh
+  726  docker exec b90ff462d484 env
+  727  clear
+  728  ls
+  729  vi doc2
+  730  docker build -t image1 -f doc2 .
+  731  cd /var/lib/docker/
+  732  clear
+  733  lfd
+  734  ls
+  735  find . -name rajesh*
+  736  find . -name rajesh*
+  737  docker history
+  738  clear
+  739  ls
+  740  docker images
+
+	
+===================================================
+How can we set PID1?
+
+CMD
+	set CMD can be replaced
+
+ENTRYPOINT
+	set ENTRYPOINT CAN NOT be replaced
+
+ 710  docker run -itd ubuntu
+  711  docker run -d jenkins
+  712  docker ps
+  713  docker run -itd ubuntu ls
+  714  docker ps -a
+  715  docker run -d jenkins ls
+  716  docker ps -a
+  717  clear
+  718  docker run -itd ubuntu df -kh
+  719  docker ps -a
+  720  docker run  ubuntu df -kh
+  721  docker run  ubuntu ls
+
+
+
+Lab
+https://www.devopsschool.com/tutorial/docker/dockerfile/dockerfile-example-sample-lab.html
+
+Assignment
+https://www.devopsschool.com/blog/dockerfile-lab-exercise-1/
+
+Qs
+What about if we Put 2 CMD
+What about if we Put 2 ENTRYPOINT
+What about if we Put 1 CMD 1 ENTRYPOINT
+
+
+
+
+
+
+	
+		
