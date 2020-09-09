@@ -100,6 +100,110 @@ Qs
 What about if we Put 2 CMD
 What about if we Put 2 ENTRYPOINT
 What about if we Put 1 CMD 1 ENTRYPOINT
+==================================================
+
+ENTRYPOINT CMD  
+===============================================================
+Docker Compose
+================================
+What is Docker Compose?
+	Automate Container service(s) for
+			creating - updating - destorying
+			-----------1 COMMAND --------------
+	Reading one file..
+		docker-compose.yaml
+		
+		service(s)
+		web
+			build - dockerfile
+			vol - volname
+			port 
+			network
+			env 
+			img - img name
+
+		app
+			build
+			vol
+			port
+			network
+			env
+			img
+
+		db			
+			build
+			vol
+			port
+			network
+			env
+			img
+
+
+
+
+What is Service?
+
+
+Monolithic -->	SOA		-> Microservcies
+
+DESKTOP		WEB SERVICE
+		APP Service
+		Db Service
+
+==============================================
+	docker-compose up
+	docker-compose down
+
+
+
+version: '2'
+services:
+  wordpress:
+    image: wordpress:latest # https://hub.docker.com/_/wordpress/
+    ports:
+      - 80:80 # change ip if required
+    volumes:
+      - ./wp-app:/var/www/html # Full wordpress project
+      #- ./plugin-name/trunk/:/var/www/html/wp-content/plugins/plugin-name # Plugin development
+      #- ./theme-name/trunk/:/var/www/html/wp-content/themes/theme-name # Theme development
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: password
+    depends_on:
+      - db
+    networks:
+      - wordpress-network
+  db:
+    image: mysql:5.5 # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
+    ports:
+      - 3306:3306 # change ip if required
+    volumes:
+      - ./wp-data:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - wordpress-network
+networks:
+  wordpress-network:
+      driver: bridge
+
+
+
+
+ 752  docker-compose ps
+  753  docker-compose down
+  754  docker-compose ps
+  755  docker-compose up -d
+  756  docker-compose ps
+  757  docker-compose logs
+  758  docker-compose
+  759  docker-compose help scale
+  760  docker-compose scale wordpress=2
+  761  docker-compose ps
+
 
 
 
