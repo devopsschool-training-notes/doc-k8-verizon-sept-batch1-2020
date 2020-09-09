@@ -207,8 +207,23 @@ networks:
 
 
 
+https://www.devopsschool.com/tutorial/docker/labs/docker/docker-lab-6-link.html
+Setting up the WordPress using Docker
+Required Images.
 
+$ docker pull mysql
+$ docker pull wordpress
+Run the mySql Docker Container
 
+$ docker run --name wpmysql -e MYSQL_ROOT_PASSWORD=password -d mysql:5.5
+$ docker ps
+Run the wordpress Docker Container
+
+$ docker run --name mywp --link wpmysql:mysql -P -d wordpress
+Run the following commands and what kinds of environment variables its get exposed to wordpress after linking the docker.
+
+$ docker run --rm --link wpmysql:mysql -P wordpress env
+Now, Access the wordpress site and Lets add some pages and post into it and commit it and store with another name.
 
 	
 		
