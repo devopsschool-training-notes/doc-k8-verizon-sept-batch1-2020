@@ -1,0 +1,102 @@
+K8s Architecture
+==================
+Master
+=============
+API Server 	-> POD -> Container -> Image -> Google Registry 
+ETCD		-> POD -> Container -> Image -> Google Registry 
+Controller mgr	-> POD -> Container -> Image -> Google Registry 
+Schedular	-> POD -> Container -> Image -> Google Registry 
+Kubelet
+Docker
+Kube Proxy	-> POD -> Container -> Image -> Registry 
+
+
+Worker
+=============
+Kubelet
+Docker
+Kube Proxy	-> POD -> Container -> Image -> Registry 
+
+Workstation
+=============
+kubectl
+
+How to setup a clustor?
+=================================
+
+Where do you want setup a clustor?
+=====================================
+1 Machine or 1 VM = minikube
+
+Self Managed
+====================
+	Private Vm(S)  	=  Manual way using Kubeadm
+	Physcial Server	=  Manual way using Kubeadm
+	AWS Ec2		= using KOPS
+	GC		= using KOPS
+	Azure		=  Manual way using Kubead
+Managed
+====================
+	AWS		= EKS
+	GC		= GKE
+	Azure		= AKS
+==========================================================
+Kubeadm
+==========================================================
+What is Kubeadm?
+https://github.com/kubernetes/kubeadm
+		- create master - worker
+		- delete master - work
+		- backup
+		- restore
+		- authentication
+		etc etc
+
+IMPORTANT - You would setup Master in a machine where you did not do anything with DOCKER.
+
+How to setup k8s clustor?
+https://www.devopsschool.com/blog/setting-up-kubernetes-clusters-using-kubeadm-manual-way-in-rhel-7-centos7/
+
+How to clean k8s clustor?
+https://www.devopsschool.com/blog/how-to-delete-remove-clean-existing-corrupted-or-old-kubeadm-kubernetes-clusters-setup/
+
+Master - 52.66.242.227
+
+
+To start using your cluster, you need to run the following as a regular u
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed a
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on  root:
+
+kubeadm join 172.31.5.202:6443 --token 1gt62v.m4g9olb2sse1b91f \
+    --discovery-token-ca-cert-hash sha256:44193f3f19f9db8c8c17042c56506fa6291fb989a0913856e1ff5ab89
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
