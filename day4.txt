@@ -60,7 +60,7 @@ https://www.devopsschool.com/blog/setting-up-kubernetes-clusters-using-kubeadm-m
 How to clean k8s clustor?
 https://www.devopsschool.com/blog/how-to-delete-remove-clean-existing-corrupted-or-old-kubeadm-kubernetes-clusters-setup/
 
-Master - 52.66.242.227
+
 
 
 To start using your cluster, you need to run the following as a regular u
@@ -77,6 +77,10 @@ You should now deploy a pod network to the cluster.
 Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
   https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
+
+$ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+
+
 Then you can join any number of worker nodes by running the following on each as                        root:
 
 kubeadm join 172.31.5.202:6443 --token 1gt62v.m4g9olb2sse1b91f \
@@ -86,8 +90,6 @@ kubeadm join 172.31.5.202:6443 --token 1gt62v.m4g9olb2sse1b91f \
 
 
 ==============================
-Worker - 
-15.207.254.84
 
 Step 1
 Step 2
@@ -100,6 +102,7 @@ Step 8
 
 How to cleanup Worker Node fully...
 ===========================================
+```
 $ docker rm $(docker ps -aq)
 $ docker rm -f -v $(docker ps -q)
 $ systemctl stop kubelet
@@ -113,6 +116,7 @@ $ sudo rm -rf /etc/kubernetes
 $ yum remove -y kubelet kubeadm kubectl
 
 # REBOOT
+
 $ yum install -y kubelet kubeadm kubectl
 $ systemctl start docker && systemctl enable docker
 $ systemctl start kubelet && systemctl enable kubelet
@@ -121,14 +125,210 @@ $ systemctl enable --now kubelet
 $ systemctl restart kubelet
 
 # Now Run Join Command as You got earlier
+```
+======================================================================================
+======================================================================================
+
+Worker - 15.207.254.84 
+Master - 52.66.242.227 == workstation
+
+WORKSTATION
+======================
+kubectl
+	config
+	$USER_HOME/.kube/config
+
+	config
+	---------
+	clustor(s)
+		clustor1 - API Server
+		clustor1 - API Server
+		clustor1 - API Server
+	USER(S)
+		user1
+		user2
+		user3
+	Context(S)
+		context1 = clustor1 + user2
+		context2
+		context3
+	curr-context = context1
+
+========================================================================
+52.66.242.227
+centos
+centos123
+
+
+   7  clear
+    8  kubectl cluster-info
+    9  clear
+   10  kubectl get nodes
+   11  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+   12  watch kubectl get nodes
+   13  clear
+   14  more $HOME/.kube/config
+   15  clear
+
+Namespace
+POD			
+ReplicationController	- Multiple Pods
+Deployment		- Multiple Pods
+-----------------------
+--------------------
+-----------------------
+
+ 21  kubectl
+   22  kubectl api-resources
+   23  clear
+   24  kubectl api-resources
+   25  clear
+   26  kubectl get ns
+   27  kubectl get pods -n=kube-system
+   28  history
+
+
+[centos@ip-172-31-5-202 ~]$ kubectl api-resources
+NAME                              SHORTNAMES   APIGROUP                       NAMESPACED   KIND
+bindings                                                                      true         Binding
+componentstatuses                 cs                                          false        ComponentStatus
+configmaps                        cm                                          true         ConfigMap
+endpoints                         ep                                          true         Endpoints
+events                            ev                                          true         Event
+limitranges                       limits                                      true         LimitRange
+namespaces                        ns                                          false        Namespace
+nodes                             no                                          false        Node
+persistentvolumeclaims            pvc                                         true         PersistentVolumeClaim
+persistentvolumes                 pv                                          false        PersistentVolume
+pods                              po                                          true         Pod
+podtemplates                                                                  true         PodTemplate
+replicationcontrollers            rc                                          true         ReplicationController
+resourcequotas                    quota                                       true         ResourceQuota
+secrets                                                                       true         Secret
+serviceaccounts                   sa                                          true         ServiceAccount
+services                          svc                                         true         Service
+mutatingwebhookconfigurations                  admissionregistration.k8s.io   false        MutatingWebhookConfiguration
+validatingwebhookconfigurations                admissionregistration.k8s.io   false        ValidatingWebhookConfiguration
+customresourcedefinitions         crd,crds     apiextensions.k8s.io           false        CustomResourceDefinition
+apiservices                                    apiregistration.k8s.io         false        APIService
+controllerrevisions                            apps                           true         ControllerRevision
+daemonsets                        ds           apps                           true         DaemonSet
+deployments                       deploy       apps                           true         Deployment
+replicasets                       rs           apps                           true         ReplicaSet
+statefulsets                      sts          apps                           true         StatefulSet
+tokenreviews                                   authentication.k8s.io          false        TokenReview
+localsubjectaccessreviews                      authorization.k8s.io           true         LocalSubjectAccessReview
+selfsubjectaccessreviews                       authorization.k8s.io           false        SelfSubjectAccessReview
+selfsubjectrulesreviews                        authorization.k8s.io           false        SelfSubjectRulesReview
+subjectaccessreviews                           authorization.k8s.io           false        SubjectAccessReview
+horizontalpodautoscalers          hpa          autoscaling                    true         HorizontalPodAutoscaler
+cronjobs                          cj           batch                          true         CronJob
+jobs                                           batch                          true         Job
+certificatesigningrequests        csr          certificates.k8s.io            false        CertificateSigningRequest
+leases                                         coordination.k8s.io            true         Lease
+endpointslices                                 discovery.k8s.io               true         EndpointSlice
+events                            ev           events.k8s.io                  true         Event
+ingresses                         ing          extensions                     true         Ingress
+ingressclasses                                 networking.k8s.io              false        IngressClass
+ingresses                         ing          networking.k8s.io              true         Ingress
+networkpolicies                   netpol       networking.k8s.io              true         NetworkPolicy
+runtimeclasses                                 node.k8s.io                    false        RuntimeClass
+poddisruptionbudgets              pdb          policy                         true         PodDisruptionBudget
+podsecuritypolicies               psp          policy                         false        PodSecurityPolicy
+clusterrolebindings                            rbac.authorization.k8s.io      false        ClusterRoleBinding
+clusterroles                                   rbac.authorization.k8s.io      false        ClusterRole
+rolebindings                                   rbac.authorization.k8s.io      true         RoleBinding
+roles                                          rbac.authorization.k8s.io      true         Role
+priorityclasses                   pc           scheduling.k8s.io              false        PriorityClass
+csidrivers                                     storage.k8s.io                 false        CSIDriver
+csinodes                                       storage.k8s.io                 false        CSINode
+storageclasses                    sc           storage.k8s.io                 false        StorageClass
+volumeattachments                              storage.k8s.io                 false        VolumeAttachment
+
+===================================
+CRUD
+======================
+	CREATE = put or post
+			CMD
+				create
+			YAML
+				create -f 
+	READ	= get
+			CMD
+				get
+
+	UPDATE	= post
+			CMD 
+				edit
+			YAML
+				apply -f 
+	DELETE	= delete 
+			CMD
+				delete
+			YAML
+				delete -f 
+
+ 32  kubectl api-versions
+   33  kubectl api-resources
+   34  clear
+   35  kubectl
+   36  clear
+   37  kubectl get ns
+   38  kubectl create ns rajesh
+   39  kubectl get ns
+   40  kubectl create ns dev
+   41  kubectl get
+   42  kubectl get ns
+   43  clear
+   44  kubectl get ns
+   45  kubectl edit ns rajesh
+   46  kubectl delete ns dev
+   47  kubectl get ns
+   48  history
 
 
 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-pod-rajesh
+  labels: 
+    app: webserver
+    software: rajesh
+spec:
+  containers:
+  - name: hello-ctr
+    image: nginx
+    ports:
+    - containerPort: 80
 
-
-
-
-
+ 28  mkdir rajeshkumar
+   29  cd rajeshkumar/
+   30  ls
+   31  clwear
+   32  clear
+   33  ls
+   34  pwd
+   35  vi pod1.yaml
+   36  kubectl get ns
+   37  kubectl create -f pod1.yaml -n=rajesh
+   38  kubectl get pods
+   39  kubectl get pods -n=rajesh
+   40  ]kubctl edit pod hello-pod-rajesh -n=rajesh
+   41  kubectl edit pod hello-pod-rajesh -n=rajesh
+   42  kubectl get pods -n=rajesh
+   43  kubectl get pods -n=rajesh --show-lables
+   44  kubectl get pods -n=rajesh --show-labels
+   45  vi pod1.yaml
+   46  kubectl apply -f pod1.yaml -n=rajesh
+   47  kubectl get pods -n=rajesh --show-labels
+   48  clear
+   49  l
+   50  kubectl delete of pod1.yaml
+   51  kubectl delete -=f pod1.yaml
+   52  kubectl delete -f pod1.yaml
+   53  kubectl delete -f pod1.yaml  -n=rajesh
+   54  kubectl get pods -n=rajesh --show-labels
 
 
 
