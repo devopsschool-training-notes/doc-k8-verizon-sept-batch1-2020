@@ -330,6 +330,152 @@ spec:
    53  kubectl delete -f pod1.yaml  -n=rajesh
    54  kubectl get pods -n=rajesh --show-labels
 
+========================================================================
+
+How to work with pods?
+===========================================
+Troubleshooting and Debugging Commands:
+  describe      Show details of a specific resource or group of resources
+  logs          Print the logs for a container in a pod
+  attach        Attach to a running container
+  exec          Execute a command in a container
+  port-forward  Forward one or more local ports to a pod
+  proxy         Run a proxy to the Kubernetes API server
+  cp            Copy files and directories to and from containers.
+  auth          Inspect authorization
+
+   59  history
+   60  clear
+   61  kubectl describe pod hello-pod-rajesh -n=rajesh
+   62  clkear
+
+
+   45  ls
+   46  kubectl get pods -n=rajesh
+   47  kubectl logs hello-pod-rajesh -n=rajesh
+   48  kubectl get pods -n=rajesh
+   49  kubectl get pods -n=rajesh -o wide
+   50  curl http://10.44.0.13
+   51  clear
+   52  kubectl logs hello-pod-rajesh -n=rajesh
+   53  curl http://10.44.0.13
+   54  clear
+   55  curl http://10.44.0.13
+   56  kubectl logs hello-pod-rajesh -n=rajesh
+
+
+
+   68  kubectl get pods -n=rajesh
+   69  kubectl attach hello-pod-rajesh -n=rajesh
+	watch curl http://10.44.0.13
+
+
+   77  clear
+   78  kubectl get pods -n=rajesh
+   79  kubectl exec -it hello-pod-rajesh /bin/bash
+   80  kubectl exec -it hello-pod-rajesh /bin/bash -n=rajesh
+   81  kubectl exec hello-pod-rajesh ls -n=rajesh
+
+
+kubectl port-forward pod/hello-pod-rajesh 80 80 -n=rajesh
+
+kubectl cp pod1.yaml hello-pod-rajesh:/tmp/ -n=rajesh
+
+  124  clear
+  125  touch devopsschool.txt
+  126  ls
+  127  kubectl cp pod1.yaml hello-pod-rajesh:/tmp/ -n=rajesh
+  128  kubectl exec hello-pod-rajesh -n=rajesh ls /tmp
+  129  history
+
+  130  clear
+  131  kubcetl auth -h
+  132  kubectl auth -h
+  133  kubectl auth can-i
+  134  kubectl auth can-i create pod
+  135  history
+=================================================================================
+=================================================================================
+ReplicationControl
+=============================
+Replication ---- Replicate to N number of Pods
+
+Controller --- What you# you set, it would be maintained all the time.
+==========================================
+
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: hello-rc
+spec:
+  replicas: 2   
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-ctr
+        image: scmgalaxy/nginx-devopsschoolv1
+        ports:
+        - containerPort: 80
+
+
+
+ 135  history
+  136  clear
+  137  kubectl create -h
+  138  clear
+  139  ls
+  140  clear
+  141  ls
+  142  vi rc.yaml
+  143  kubectl create -f rc.yaml -n=rajesh
+  144  kubectl get rc -n=rajesh
+  145  kubectl describe rc hello-rc -n=rajesh
+  146  clear
+  147  kubectl get pods -n=rajesh
+  148  kubectl describe pod hello-rc-n9s85 -n=rajesh
+  149  clear
+  150  ls
+  151  kubectl get pods -n=rajesh
+  152  clear
+  153  ls
+  154  vi rc.yaml
+  155  kubectl apply -f rc.yaml -n=rajesh
+  156  kubectl get pods -n=rajesh
+  157  kubectl edit rc hello-rc -n=rajesh
+  158  clear
+  159  kubectl get pods -n=rajesh
+  160  kubectl scale -h'
+  161  kubectl scale -h
+  162  kubectl edit rc hello-rc -n=rajesh
+  163  kubectl describe rc hello-rc -n=rajesh
+  164  clear
+  165  kubectl get rc hello-rc -n=rajesh
+  166  kubectl scale --replicas=3 rc/hello-rc
+  167  kubectl scale --replicas=3 rc/hello-rc -n=rajesh
+  168  kubectl get rc hello-rc -n=rajesh
+  169  clea
+  170  clear
+  171  kubectl get rc hello-rc -n=rajesh
+  172  kubectl get pods -n=rajesh
+  173  kubectl delete pod hello-rc-n9s85  hello-rc-prblv hello-rc-qwfg4 -n=rajesh
+  174  kubectl get pods -n=rajesh
+  175  history
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
