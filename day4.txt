@@ -100,6 +100,7 @@ Step 8
 
 How to cleanup Worker Node fully...
 ===========================================
+$ docker rm $(docker ps -aq)
 $ docker rm -f -v $(docker ps -q)
 $ systemctl stop kubelet
 $ systemctl stop docker
