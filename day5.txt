@@ -1,0 +1,254 @@
+ - Can we get scalability on AWS for Kube?
+
+
+ - ======================
+Deployment
+======================================
+Deployment
+- Replication
+- Controller
+- Versioning
+- Rollout without single sec of downtime
+- Rollback without single sec of downtime
+======================================== 
+
+$ kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1 -n=rajesh
+
+Workstation - 13.233.153.134
+
+centos
+centos123
+=============================
+
+
+  613  ls
+  614  kubectl explain ns
+  615  kubectl explain ns.spec
+  616  clear
+  617  kubectl explain pod
+  618  clear
+  619  kubectl explain pod.spec
+  620  clear
+  621  kubectl explain pod.spec.containers
+  622  clear
+  623  kubectl explain rc
+  624  kubectl explain rc.spec
+  625  kubectl explain rc.spec.template
+  626  kubectl explain rc.spec.template.spec
+  627  kubectl explain deploy
+  628  clear
+  629  history
+
+592  kubectl get deploy -n=rajesh
+  593  kubectl get pods
+  594  kubectl get pods -n=rajesh
+  595  kubectl delete rc hello-rc -n=rajesh
+  596  clear
+  597  kubectl get pods -n=rajesh
+  598  kubectl delete pod hello-pod-rajesh -n=rajesh
+  599  clear
+  600  kubectl get pods -n=rajesh
+  601  kubectl edit deploy my-dep-747b4ffb56-g7pkk -n=rajesh
+  602  kubectl edit deploy my-dep -n=rajesh
+  603  kubectl get pods -n=rajesh
+  604  kubectl scale -h
+  605  clear
+  606  kubectl scale --replicas=4 deploy/my-deploy
+  607  kubectl scale --replicas=4 deploy/my-dep -n=rajesh
+  608  kubectl get pods -n=rajesh
+  609  history
+  610  ls
+  611  kubectl
+
+
+https://www.devopsschool.com/blog/how-to-check-containers-readiness-inside-a-pod-using-readinessprobe/
+https://www.devopsschool.com/blog/how-to-check-containers-health-inside-a-kubernetes-pod-using-livenessprobe/
+
+  612  clear
+  613  ls
+  614  kubectl explain ns
+  615  kubectl explain ns.spec
+  616  clear
+  617  kubectl explain pod
+  618  clear
+  619  kubectl explain pod.spec
+  620  clear
+  621  kubectl explain pod.spec.containers
+  622  clear
+  623  kubectl explain rc
+  624  kubectl explain rc.spec
+  625  kubectl explain rc.spec.template
+  626  kubectl explain rc.spec.template.spec
+  627  kubectl explain deploy
+  628  clear
+  629  history
+  630  clear
+  631  kubectl get pods -n=rajesh
+  632  clear
+  633  kubectl get deploy
+  634  kubectl get deploy -n=rajesh
+  635  kubectl get pods -n=rajesh
+  636  kubectl delete pod my-dep-747b4ffb56-cf4bp my-dep-747b4ffb56-g7pkk my-dep-747b4ffb56-hdslw
+  637  kubectl delete pod my-dep-747b4ffb56-cf4bp my-dep-747b4ffb56-g7pkk my-dep-747b4ffb56-hdslw -n=rajesh
+  638  kubectl get pods -n=rajesh
+  639  clear
+  640  ls
+  641  kubectl get deploye -n=rajesh
+  642  kubectl get deploy -n=rajesh
+  643  kubectl get deploy my-dep -n=rajesh
+  644  kubectl get deploy my-dep -n=rajesh -o yaml
+  645  clear
+  646  kubectl get deploy my-dep -n=rajesh -o yaml >> dep.yaml
+  647  ls
+  648  vi dep.yaml
+  649  kubectl apply -f dep.yaml -n=rajesh
+  650  kubectlo get deploy -n=rajesh
+  651  kubectl get deploy -n=rajesh
+  652  clear
+  653  ls
+  654  vi dep.yaml
+  655  kubectl apply -f dep.yaml -n=rajesh
+  656  kubectl get deploy -n=rajesh
+  657  history
+
+
+Manage the rollout of a resource.
+
+ Valid resource types include:
+
+  *  deployments
+  *  daemonsets
+  *  statefulsets
+
+Available Commands:
+  history     View rollout history
+  pause       Mark the provided resource as paused
+  restart     Restart a resource
+  resume      Resume a paused resource
+  status      Show the status of the rollout
+  undo        Undo a previous rollout
+
+
+kubectl rollout history deployment/my-dep -n=rajesh
+
+  657  history
+  658  clear
+  659  ls
+  660  kubectl
+  661  clear
+  662  kubectl rollout
+  663  clear
+  664  kubectl rollout history -h
+  665  clear
+  666  kubectl rollout history deployment/my-dep -n=rajesh
+  667  kubectl edit deployment/my-dep -n=rajesh
+  668  kubectl get pod -o wide -n=rajesh
+  669  curl http://10.44.0.14
+  670  kubectl edit deployment/my-dep -n=rajesh
+  671  kubectl get pod -o wide -n=rajesh
+  672  clear
+  673  curl http://10.44.0.15
+  674  kubectl rollout history deployment/my-dep -n=rajesh
+  675  history
+
+
+
+kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1 -n=rajesh
+kubectl rollout history deployment/my-dep -n=rajesh
+kubectl scale --replicas=10 deploy/my-dep -n=rajesh
+kubectl rollout status deployment/my-dep -n=rajesh
+kubectl edit deployment my-dep -n=rajesh	# scmgalaxy/nginx-devopsschoolv2 [ Manual ]
+kubectl rollout status deployment/my-dep -n=rajesh
+kubectl rollout history deployment/my-dep -n=rajesh
+kubectl rollout undo deployment/my-dep --to-revision=1 -n=rajesh
+kubectl rollout status deployment/my-dep -n=rajesh
+
+
+
+deployment rollout strategy?
+=============================
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+
+678  kubectl get pods -n=rajesh
+  679  kubectl get pods --all-namespaces
+  680  clear
+  681  ls
+  682  kubectl get pods --all-namespaces
+  683  kubectl delete pod hello-pod-rajesh hello-pod-uma hello-rc-fpmqj hello-rc-uma-99zjf hello-rc-uma-rxl4n hello-rc-zsk42 -n=uma
+  684  clear
+  685  kubectl get pods --all-namespaces
+  686  kubectl delete pod hello-rc-4kbl2 hello-rc-uma-qbqbm hello-rc-uma-tvc4d
+  687  kubectl delete pod hello-rc-4kbl2 hello-rc-uma-qbqbm hello-rc-uma-tvc4d -n=uma
+  688  clear
+  689  kubectl get pods --all-namespaces
+  690  kubectl delete pod my-dep-8474b769c7-l27wl -n=rajesh
+  691  kubectl delete rc hello-rc -n=uma
+  692  clear
+  693  ks
+  694  kubectl get pods --all-namespaces
+  695  kubectl delete rc hello-rc-uma -n=uma
+  696  clear
+  697  kubectl get pods --all-namespaces
+  698  clear
+  699  ls
+  700  kubectl get deploy -n=rajesh
+  701  kubectl delete deploy my-dep my-dep1 -n=rajesh
+  702  clear
+  703  ls
+  704  kubectl rollout undo -h
+  705  clear
+  706  ls
+  707  more dep.yaml
+  708  clear
+  709  ls
+  710  kubectl get deploy -n=rajesh
+  711  clear
+  712  ls
+  713  kubectl get deploy -n=rajesh
+  714  kubectl create deployment my-dep --image=scmgalaxy/nginx-devopsschoolv1 -n=rajesh
+  715  kubectl get deploy -n=rajesh
+  716  kubectl rollout history deployment/my-dep -n=rajesh
+  717  kubectl get pod -o wide -n=rajesh
+  718  curl http://10.44.0.6
+  719  histoyr
+  720  history
+  721  clear
+  722  ls
+  723  histoyrkubectl scale --replicas=10 deploy/my-deploy -n=rajesh
+  724  kubectl scale --replicas=10 deploy/my-deploy -n=rajesh
+  725  clear
+  726  kubectl scale --replicas=10 deploy/my-dep -n=rajesh
+  727  kubectl get pod -o wide -n=rajesh
+  728  clear
+  729  ls
+  730  kubectl scale --replicas=10 deploy/my-dep -n=rajesh
+  731  kubectl scale --replicas=1 deploy/my-dep -n=rajesh
+  732  kubectl rollout status deployment/my-dep -n=rajesh
+  733  clear
+  734  ls
+  735  kubectl scale --replicas=15 deploy/my-dep -n=rajesh
+  736  kubectl rollout status deployment/my-dep -n=rajesh
+  737  kubectl edit deployment my-dep -n=rajesh
+  738  kubectl rollout status deployment/my-dep -n=rajesh
+  739  kubectl rollout history deployment/my-dep -n=rajesh
+  740  clear
+  741  ls
+  742  kubectl get pod -o wide -n=rajesh
+  743  cler
+  744  clear
+  745  curl http://10.44.0.15
+  746  kubectl rollout undo deployment/my-dep --to-revision=1 -n=rajesh
+  747  kubectl rollout status deployment/my-dep -n=rajesh
+  748  clear
+  749  kubectl get pod -o wide -n=rajesh
+  750  curl http://10.44.0.20
+  751  clear
+  752  history
+
+
+
+
