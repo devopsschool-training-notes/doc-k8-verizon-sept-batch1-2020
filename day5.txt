@@ -315,6 +315,86 @@ kubectl create service loadbalancer my-lbs --tcp=5678:80 -n=rajesh
   771  kubectl describe svc my-lbs -n=rajesh
   772  kubectl get svc -n=rajesh
   773  curl http://10.100.189.214:5678
+===================================================
+How to get 
+	Tutorials
+	Slides
+	Videos
+	Notes
+	Blogs
+	Sample Program
+	Help?
+https://www.devopsschool.com/kit/master-in-devops-engineering.html
+
+How to reach out to me?
+========================
+http://rajeshkumar.xyz/
+
+======================================================
+Helm chart
+===============================================
+yum 
+apt
+play store
+nuget
+Package mgr for Kubernetes - helm
+		- utility
+		- Add repo
+			- Install a package(yaml)  	AKA Chart
+			- updatre a package (yaml)	 AKA Chart	
+			- Remove
+
+
+Certification
+==========================
+CKA		ADMiN
+https://www.devopsschool.com/tutorial/kubernetes/labs/
+https://www.devopsschool.com/lms
+
+CKAD		DEV
+
+Kubernetes dashboard
+	ADDS on
+
+
+Prometheus
+=======================================
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+'========================
+
+How to setup a monitoring
+=============================
+Infra
+	Container	- Cadivisor
+	POD		- Metric server
+	Service		- Service Mess
+	K8s		- Prometheus		DATADOG
+
+
+Log	
+	App Log - Container Log			ELK	SPLUNK
+	Events - Kubelet + Docker Engine	ELK	SPLUNK		
+	K8s Pods Logs - SYSTEMS PODS		ELK	SPLUNK
+
+
+
+Perf
+	NewRelic 
+	AppDynamics
+
+https://www.devopsschool.com/blog/what-is-docker-enterprise-3-0-detailed-exaplanations/
+https://www.devopsschool.com/blog/difference-between-docker-community-edition-ce-vs-docker-enterprise-edition-ee-in-2020/
+
+
+Storage
+https://www.devopsschool.com/blog/persistentvolume-persistentvolumeclaim-volumes-using-hostpath/
+
+
+
+
+
+
 
 
 
