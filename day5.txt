@@ -250,5 +250,76 @@ deployment rollout strategy?
   752  history
 
 
+====================================
+service
+=====================================
+
+kubectl create service clusterip my-cs --tcp=5678:80
+
+ 774  kubectl apply -f pod1.yaml -n=rajesh
+  775  kubectl get pods -n=rajesh
+  776  kubectl get pods -n=rajesh --show-labels
+  777  kubectl create -h
+  778  clear
+  779  kubectl create service -h
+  780  kubectl create service clusterip -h
+  781  clear
+  782  kubectl get svc -n=rajesh
+  783  kubectl create service clusterip my-cs --tcp=5678:80
+  784  kubectl get svc -n=rajesh
+  785  kubectl get pods -n=rajesh --show-labels
+  786  kubectl get svc -n=rajesh --show-labels
+  787  kubectl create service clusterip my-cs --tcp=5678:80 -n=rajesh
+  788  kubectl get svc -n=rajesh --show-labels
+  789  kubectl get pods -n=rajesh --show-labels
+  790  kubectl edit svc my-cs -n=rajesh
+  791  clear
+  792  kubectl get pods -n=rajesh --show-labels
+  793  kubectl get svc -n=rajesh --show-labels
+  794  kubectl describe svc my-cs -n=rajesh
+  795  curl http://10.96.112.166
+  796  curl http://10.96.112.166:5678
+  797  kubectl edit svc my-cs -n=rajesh
+  798  kubectl describe svc my-cs -n=rajesh
+  799  curl http://10.96.112.166:5678
+  800  kubectl describe svc my-cs -n=rajesh
+  801  history
+
+=======================================================
+================
+Types of Service
+	ClustorIP
+		Load Balance POD on POD network
+
+
+	NodePort
+		Create ClustorIPservice
+		It port forwards to Node Port
+
+kubectl create service nodeport my-ns --tcp=5678:80 -n=rajesh
+
+	LoadBalancer
+		Create Service based ClustorIP
+		Esxpose Service  at NodePort
+		Create Ext 
+		Add Node to Exter LoadBalancer
+
+kubectl create service loadbalancer my-lbs --tcp=5678:80 -n=rajesh
+
+ 765  kubectl get svc -n=rajesh
+  766  kubectl describe svc my-lbs -n=rajesh
+  767  kubectl get pod
+  768  kubectl get pod -n=rajesh
+  769  kubectl edit pod hello-pod-rajesh
+  770  kubectl edit pod hello-pod-rajesh -n=rajesh
+  771  kubectl describe svc my-lbs -n=rajesh
+  772  kubectl get svc -n=rajesh
+  773  curl http://10.100.189.214:5678
+
+
+
+
+
+
 
 
